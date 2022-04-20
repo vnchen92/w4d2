@@ -1,4 +1,4 @@
-class Slideable
+module Slideable
     HORIZONTAL_DIRS = [[0,1], [0,-1], [1,0], [-1,0]]
     DIAGONAL_DIRS = [[1,1], [1,-1], [-1, 1], [-1, -1]]
 
@@ -25,11 +25,18 @@ class Slideable
         x, y = self.pos
         poss_x = x + dx
         poss_y = y + dy
-        while ((0..7).include?(poss_x) && (0..7).include?(poss_y)) && @board[poss_x][poss_y].empty?
-            unblocked_moves << [poss_x, poss_y]
-            poss_x = x + dx
-            poss_y = y + dy
+        while ((0..7).include?(poss_x) && (0..7).include?(poss_y))
+            if @board[[poss_x,poss_y]].empty?
+                unblocked_moves << [poss_x, poss_y]
+            elsif @board[[poss_x,poss_y]].color != self.color
+                unblocked_moves << [poss_x, poss_y]
+            else
+                break
+            end
+            poss_x += dx
+            poss_y += dy
         end
+        unblocked_moves
     end
 
     def move_dirs

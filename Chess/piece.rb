@@ -1,20 +1,25 @@
 class Piece
+    attr_reader :color, :pos
+    attr_writer :pos
+    
     def initialize(color, board, pos)
         @color = color
         @board = board
-        @pos = []
+        @pos = pos
     end
 
     def empty?
-        self.instance_of(NullPiece)
+        self.instance_of?(NullPiece)
     end
 
-    def pos=(val)
+    # def valid_moves
+    #     move_dirs
+    # end
 
-    end
+    # def pos=(val)
 
-    def moves
-        moves = []
-    end
+    # end
+
+    
 
 end

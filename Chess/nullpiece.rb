@@ -8,4 +8,10 @@ class NullPiece < Piece
         @color = :none
     end
 
+    def symbol
+        "   "
+    end
+
+    
+
 end
